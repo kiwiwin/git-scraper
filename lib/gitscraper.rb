@@ -1,5 +1,6 @@
 require "gitscraper/version"
+require "gitscraper/search_url"
 
 module Gitscraper
-  # Your code goes here...
+
 end
