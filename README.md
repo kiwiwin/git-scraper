@@ -1,6 +1,6 @@
 # Gitscraper
 
-TODO: Write a gem description
+		Scrape Github Information
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+	Scrape Github information
 
 ## Contributing
 
