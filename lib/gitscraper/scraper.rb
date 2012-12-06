@@ -14,7 +14,8 @@ module Gitscraper
 		end
 
 		def page_number
-			(1.0 * element_number / page_size).ceil
+			github_max_pages = 99
+			[(1.0 * element_number / page_size).ceil, github_max_pages].min
 		end
 
 		def page_size
