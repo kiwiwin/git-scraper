@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["kiwi.swhite.coder@gmail.com"]
   gem.description   = %q{scrape github}
   gem.summary       = %q{scrape github}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/kiwiwin/git-scraper"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
