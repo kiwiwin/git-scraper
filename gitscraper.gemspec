@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.version       = Gitscraper::VERSION
   gem.authors       = ["kiwi"]
   gem.email         = ["kiwi.swhite.coder@gmail.com"]
-  gem.description   = %q{scrape github}
+  gem.description   = %q{this gem can scrape conten from github}
   gem.summary       = %q{scrape github}
   gem.homepage      = "https://github.com/kiwiwin/git-scraper"
 
