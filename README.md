@@ -18,7 +18,13 @@ Or install it yourself as:
 
 ## Usage
 
-	Scrape Github information
+### SearchURL
+
+SearchURL use github advance search, see search_url_spec for details usage
+
+### Scraper
+
+Scraper scrape elements in each page that get from SearchURL, see fixture and scraper_spec for details
 
 ## Contributing
 

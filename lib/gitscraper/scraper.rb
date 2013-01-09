@@ -4,24 +4,23 @@ require 'nokogiri'
 module Gitscraper
 
 	class Scraper
+        PAGE_MAX = 99
+        PAGE_SIZE = 10
 
-		def initialize(url, page_size = 10)
+		def initialize(url)
 			@url = url
-			@page_size = page_size
-			define_singleton_method("single_page_#{@url.type.pluralize}") { |index| single_page_elements(index) }
-			define_singleton_method("#{@url.type.pluralize}_count") { elements_count }
-			define_singleton_method("all_#{@url.type.pluralize}") { all_elements }
+			define_singleton_method("single_page_#{@url.type}") { |index| single_page_elements(index) }
+			define_singleton_method("#{@url.type}_count") { elements_count }
+			define_singleton_method("all_#{@url.type}") { all_elements }
 		end
 
-		def page_number
-			github_max_pages = 99
-			[(1.0 * elements_count / page_size).ceil, github_max_pages].min
+		def page_count
+			[(1.0 * elements_count / PAGE_SIZE).ceil, PAGE_MAX].min
 		end
 
 		def page_size
-			@page_size
+			PAGE_SIZE
 		end
-
 
 		private
 		def single_page_elements(page_index)
@@ -35,7 +34,7 @@ module Gitscraper
 		end
 
 		def all_elements
-			(1..page_number).inject([]) do |elements, page_index|
+			(1..page_count).inject([]) do |elements, page_index|
 				elements + single_page_elements(page_index)
 			end
 		end

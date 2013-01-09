@@ -15,8 +15,8 @@ describe Gitscraper::Scraper do
 		context "when #{fixture} user page" do
 
 			before (:each) do
-				@scraper = ScraperSpecHelper.create_scraper(:user, fixture)
-				@user_list = ScraperSpecHelper.load_result_list(:user, fixture)
+				@scraper = ScraperSpecHelper.create_scraper(:users, fixture)
+				@user_list = ScraperSpecHelper.load_result_list(:users, fixture)
 			end		
 
 			it "repository number should be #{expected_user_count}" do

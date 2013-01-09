@@ -1,5 +1,4 @@
 require 'uri'
-require 'active_support/inflector'
 
 module Gitscraper
 	class SearchURL
@@ -10,11 +9,11 @@ module Gitscraper
 		end
 
 		def type
-			@type.singularize
+			@type
 		end
 
 		def search_url
-			url = "https://github.com/search?&q=#{search_criteria}&type=#{@type.pluralize.capitalize}"
+			url = "https://github.com/search?&q=#{search_criteria}&type=#{@type.capitalize}"
 			URI::encode(url)
 		end
 
@@ -23,7 +22,22 @@ module Gitscraper
 		end
 
 		def search_criteria
-			@param.to_a.inject([]) { |res, pair| res << pair.join(":") }.join('+')
+            raw = raw_criteria 
+            specific = specific_criteria
+            if raw != "" and specific != ""
+               raw + "+" + specific 
+            else
+               raw + specific
+            end
 		end
+        
+        def raw_criteria
+            @param[:raw] ? @param[:raw].join("+") : ""
+        end
+        
+        def specific_criteria
+            params = @param.select { |key, val| key.to_s != 'raw' }
+            params.inject([]) { |res, pair| res << pair.join(":") }.join('+')
+        end
 	end
 end

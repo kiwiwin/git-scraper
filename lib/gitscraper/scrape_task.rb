@@ -5,14 +5,14 @@ require_relative 'scraper'
 module Gitscraper
 	class ScrapeTask
 		class ScrapeJob < Job
-			def initialize(url, results, mutex)
-				@url = url
+			def initialize(scraper, results, mutex)
+				@scraper = scraper
 				@results = results
 				@mutex = mutex
 			end
 
 			def run
-				results = Scraper.new(@url).send("all_#{@url.type.pluralize}")
+				results = @scraper.send("all_#{@url.type.pluralize}")
 				@mutex.synchronize { @results[@url.type.pluralize] += results }
 			end
 		end
@@ -37,7 +37,7 @@ module Gitscraper
 		private
 
 		def run
-			@urls.each { |url| @threadpool.load(ScrapeJob.new(url, @results, @mutex)) }
+			@urls.each { |url| @threadpool.load(ScrapeJob.new(Scraper.new(url), @results, @mutex)) }
 			@threadpool.shutdown unless @urls.empty?
 		end
 	end
