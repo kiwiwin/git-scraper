@@ -25,7 +25,7 @@ module Gitscraper
 		private
 		def single_page_elements(page_index)
 			page = Nokogiri::HTML(open(@url.single_page_url(page_index)))
-			page.css("h2[class=title]").css("a").collect { |element| element["href"][1..-1] }
+			page.css("h2[class=title] a").collect { |element| element["href"][1..-1] }
 		end
 
 		def elements_count
